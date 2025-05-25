@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	//初始化时请填入自己企业的corpid与secrectkey。
     Init_t* init_fn = (Init_t*)dlsym(so_handle, "Init");
     DestroySdk_t* destroysdk_fn = (DestroySdk_t*)dlsym(so_handle, "DestroySdk");
-    ret = init_fn(sdk, "wwd08c8e7c775ab44d", "zJ6k0naVVQ--gt9PUSSEvs03zW_nlDVmjLCTOTAfrew");
+    ret = init_fn(sdk, "wwdf65802ca25ec195", "-Ta6WMWxBhfGolWnnlO15nQckj3DRKAowUOdX2fwvzE");
     if (ret != 0) {
         //sdk需要主动释放
         destroysdk_fn(sdk);
