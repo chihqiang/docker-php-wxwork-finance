@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <iostream>
+#include <fstream>
 using std::string;
 
 typedef WeWorkFinanceSdk_t* newsdk_t();
@@ -52,7 +54,19 @@ int main(int argc, char* argv[])
 	//初始化时请填入自己企业的corpid与secrectkey。
     Init_t* init_fn = (Init_t*)dlsym(so_handle, "Init");
     DestroySdk_t* destroysdk_fn = (DestroySdk_t*)dlsym(so_handle, "DestroySdk");
-    ret = init_fn(sdk, "wwdf65802ca25ec195", "-Ta6WMWxBhfGolWnnlO15nQckj3DRKAowUOdX2fwvzE");
+    
+    
+    // 测试企业
+    std::string corpid_str = "ww*************";
+    std::string secrect = "y**********************4";
+    
+    std::ifstream in_file("config.txt");
+    if(in_file.is_open()) {
+        in_file >> corpid_str;
+        in_file >> secrect;
+    }
+
+    ret = init_fn(sdk, corpid_str.c_str(), secrect.c_str());
     if (ret != 0) {
         //sdk需要主动释放
         destroysdk_fn(sdk);
